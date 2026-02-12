@@ -20,8 +20,8 @@ export function registerDiscoveryTools(server, client) {
     'Browse or search the public entity directory. No auth required.',
     {
       search: z.string().optional().describe('Search by name or description'),
-      limit: z.number().optional().describe('Max results (default 20)'),
-      offset: z.number().optional().describe('Pagination offset'),
+      limit: z.number().optional().describe('Max results (default 20, max 100)'),
+      page: z.number().optional().describe('Page number (default 1)'),
     },
     async (args) => {
       try {

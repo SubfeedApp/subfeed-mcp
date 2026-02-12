@@ -1,5 +1,16 @@
 import { z } from 'zod';
 
+const ADDON_TYPE_ENUM = z.enum([
+  'web_search',
+  'code_execution',
+  'image_gen',
+  'web_scrape',
+  'web_screenshot',
+  'web_extract',
+  'image_input',
+  'streaming',
+]);
+
 export function registerAddonTools(server, client) {
   server.tool(
     'subfeed_list_addons',
@@ -22,7 +33,7 @@ export function registerAddonTools(server, client) {
     'Enable an addon on an entity.',
     {
       id: z.string().describe('Entity ID'),
-      addonType: z.string().describe('web_search | code_execution | image_gen | image_input | streaming | web_scrape | web_screenshot | web_extract'),
+      addonType: ADDON_TYPE_ENUM.describe('Addon type to enable'),
     },
     async ({ id, addonType }) => {
       try {
@@ -41,7 +52,7 @@ export function registerAddonTools(server, client) {
     'Disable an addon on an entity.',
     {
       id: z.string().describe('Entity ID'),
-      addonType: z.string().describe('Addon type to disable'),
+      addonType: ADDON_TYPE_ENUM.describe('Addon type to disable'),
     },
     async ({ id, addonType }) => {
       try {

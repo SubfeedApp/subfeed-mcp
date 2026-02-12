@@ -28,10 +28,11 @@ function createMcpServer(authHeader) {
 }
 
 const app = express();
+app.use(express.json());
 const transports = {};
 
 app.get('/', (req, res) => {
-  res.json({ status: 'ok', tools: 15 });
+  res.json({ status: 'ok' });
 });
 
 app.get('/sse', async (req, res) => {

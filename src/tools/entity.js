@@ -28,7 +28,7 @@ export function registerEntityTools(server, client) {
     'List your entities.',
     {
       limit: z.number().optional().describe('Max results'),
-      offset: z.number().optional().describe('Pagination offset'),
+      page: z.number().optional().describe('Page number (default 1)'),
     },
     async (args) => {
       try {
