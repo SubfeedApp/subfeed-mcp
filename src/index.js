@@ -34,6 +34,16 @@ app.get('/', (req, res) => {
   res.json({ status: 'ok', tools: 15 });
 });
 
+app.get('/.well-known/mcp/server-card.json', (req, res) => {
+  res.json({
+    name: 'Subfeed',
+    description: 'Deploy and manage AI agents via MCP. Create entities, chat, attach tools. 15 tools available.',
+    url: 'https://mcp.subfeed.app/sse',
+    version: '1.0.0',
+    capabilities: { tools: true }
+  });
+});
+
 app.get('/sse', async (req, res) => {
   const authHeader = req.headers.authorization || '';
   const transport = new SSEServerTransport('/messages', res);
